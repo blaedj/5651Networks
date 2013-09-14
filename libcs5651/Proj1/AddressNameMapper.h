@@ -11,8 +11,9 @@
 #ifndef __BCJNETWORKS__ADDRESS_NAME_MAPPER_H__
 #define __BCJNETWORKS__ADDRESS_NAME_MAPPER_H__ 1
 
-#include <cstdlib>
+
 #include <iostream>
+using namespace std;
 
 namespace bcjnetworks {
 
@@ -21,15 +22,13 @@ namespace bcjnetworks {
     AddressNameMapper();
     virtual ~AddressNameMapper();
 
-    std::string getHostname( std::string ipaddress);
-    std::string getIPAddr( std::string hostname);
+    string getHostname( string ipaddress);
+    string getIPAddr( string hostname);
 
   private:
-
     double _ip_address;
-    std::string _hostname;
+    string _hostname;
   };
-
 }
 
 #endif // __BCJNETWORKS__ADDRESS_NAME_MAPPER_H__ 1
