@@ -1,2 +1,0 @@
-/usr/bin/ar cr libcs5651-util.a  CMakeFiles/cs5651-util.dir/ArgumentParsing.cpp.o CMakeFiles/cs5651-util.dir/handleNetworkArgs.cpp.o CMakeFiles/cs5651-util.dir/Random.cpp.o CMakeFiles/cs5651-util.dir/Timer.cpp.o
-/usr/bin/ranlib libcs5651-util.a

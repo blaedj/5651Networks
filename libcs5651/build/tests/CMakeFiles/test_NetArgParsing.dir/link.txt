@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/test_NetArgParsing.dir/test_NetArgParsing.cpp.o  -o test_NetArgParsing -rdynamic ../CS5651Lib/libcs5651-util.a -Wl,-Bstatic -lboost_program_options-mt -Wl,-Bdynamic 
