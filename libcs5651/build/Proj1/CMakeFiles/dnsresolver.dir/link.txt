@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/dnsresolver.dir/AddressNameMapper.cpp.o CMakeFiles/dnsresolver.dir/main.cpp.o  -o dnsresolver -rdynamic ../CS5651Lib/libcs5651-util.a -Wl,-Bstatic -lboost_program_options-mt -Wl,-Bdynamic 

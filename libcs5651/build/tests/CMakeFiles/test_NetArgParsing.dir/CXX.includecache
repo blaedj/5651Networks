@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../CS5651Lib/ArgumentParsing.h
+iostream
+-
+sstream
+-
+cstdlib
+-
+cstring
+-
+vector
+-
+boost/program_options.hpp
+-
+
+../CS5651Lib/handleNetworkArgs.h
+iostream
+-
+string
+-
+ArgumentParsing.h
+../CS5651Lib/ArgumentParsing.h
+
+/home/blaed/code/networks/libcs5651/tests/test_NetArgParsing.cpp
+iostream
+-
+string
+-
+handleNetworkArgs.h
+/home/blaed/code/networks/libcs5651/tests/handleNetworkArgs.h
+

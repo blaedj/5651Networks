@@ -14,21 +14,20 @@
 #include <cstdlib>
 #include <iostream>
 
-namenspace bcjnetworks {
+namespace bcjnetworks {
 
   class AddressNameMapper {
   public:
-    AddressNameMapper( int IPAddress );
-    AddressNameMapper( string hostName );
+    AddressNameMapper();
     virtual ~AddressNameMapper();
 
-    string getHostname();
-    string getIPAddr();
+    std::string getHostname( std::string ipaddress);
+    std::string getIPAddr( std::string hostname);
 
   private:
-    AddressNameMapper();
-    _ip_address;
 
+    double _ip_address;
+    std::string _hostname;
   };
 
 }

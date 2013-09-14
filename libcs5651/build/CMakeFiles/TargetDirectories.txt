@@ -1,0 +1,3 @@
+/home/blaed/code/networks/libcs5651/build/CS5651Lib/CMakeFiles/cs5651-util.dir
+/home/blaed/code/networks/libcs5651/build/Proj1/CMakeFiles/dnsresolver.dir
+/home/blaed/code/networks/libcs5651/build/tests/CMakeFiles/test_NetArgParsing.dir
