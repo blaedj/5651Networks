@@ -6,7 +6,8 @@
 
 #include <iostream>
 #include "AddressNameMapper.h"
-#include "../CS5651Lib/handleNetworkArgs.h"
+#include "../libcs5651/CS5651Lib/handleNetworkArgs.h"
+#include "handleNetworkArgs.h"
 
 using namespace bcjnetworks;
 using namespace sivelab;
