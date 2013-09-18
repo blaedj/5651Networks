@@ -21,5 +21,3 @@ ADD_EXECUTABLE( dnsresolver
 target_link_libraries(dnsresolver cs5651-util)
 
 target_link_libraries(dnsresolver ${Boost_PROGRAM_OPTIONS_LIBRARIES})
-
-target_link_libraries(cs5651-util ${Boost_PROGRAM_OPTIONS_LIBRARIES})
