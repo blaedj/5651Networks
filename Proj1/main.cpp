@@ -28,9 +28,16 @@ int main( int argc, char *argv[] ) {
   }
 
   if (args.hasHostname) {
-     string resolved_addr = identifier.getIPAddr( args.hostname );
-    cout << "IP address is " << resolved_addr << "\n";
-  } else if (args.hasHostIP) {
+    deque<char*> resolved_addr = identifier.getIPAddr( args.hostname );
+
+    for(int i = 0; i < resolved_addr.size(); i++) {
+      char *cur_address = resolved_addr.front();
+      resolved_addr.pop_front();
+      cout << args.hostname << " is " << cur_address << "\n";
+    }
+
+  }
+  if (args.hasHostIP) {
     string resolved_hostname = identifier.getHostname( args.hostIP );
     cout << "hostname is: " << resolved_hostname << "\n";
   }

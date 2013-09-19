@@ -11,5 +11,10 @@
 *.lai
 *.la
 *.a
+
+# build folders
 */build/*
 build/
+
+# other version control files
+.svn/

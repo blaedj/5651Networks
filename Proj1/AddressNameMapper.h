@@ -13,6 +13,7 @@
 
 
 #include <iostream>
+#include <deque>
 using namespace std;
 
 namespace bcjnetworks {
@@ -23,7 +24,7 @@ namespace bcjnetworks {
     virtual ~AddressNameMapper();
 
     string getHostname( string ipaddress);
-    string getIPAddr( string hostname);
+    deque<char*> getIPAddr( string hostname);
 
   private:
     double _ip_address;
