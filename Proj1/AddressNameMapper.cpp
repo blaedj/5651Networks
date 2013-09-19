@@ -11,7 +11,7 @@
 
 #include "AddressNameMapper.h"
 
-
+#define BUFFER_SIZE 500
 
 using namespace bcjnetworks;
 using namespace std;
@@ -35,6 +35,12 @@ string AddressNameMapper::getIPAddr( string ip_address) {
   socklen_t peer_address_length;
   ssize_t nread;
   char buffer[BUFFER_SIZE];
+
+  // make sure address_hints is cleared out in mem
+  memset( &address_hints, 0, sizeof(struct addrinfo) );
+
+  address_hints.ai_family
+
 
   getaddrinfo();
 

@@ -21,21 +21,20 @@ int main( int argc, char *argv[] ) {
   args.process( argc, argv );
   AddressNameMapper identifier;
 
-  if (args.hasHostname) {
-
-     string resolved_addr = identifier.getIPAddr( args.hostname );
-    cout << "IP address is " << resolved_addr << "\n";
-
-  } else if (args.hasHostIP) {
-    string resolved_hostname = identifier.getHostname( args.hostIP );
-    cout << "hostname is: " << resolved_hostname << "\n";
-  }
-
   if(isLittleEndian()) {
     cout << "Byte order is Little Endian\n";
   } else {
     cout << "Byte order is Big Endian\n";
   }
+
+  if (args.hasHostname) {
+     string resolved_addr = identifier.getIPAddr( args.hostname );
+    cout << "IP address is " << resolved_addr << "\n";
+  } else if (args.hasHostIP) {
+    string resolved_hostname = identifier.getHostname( args.hostIP );
+    cout << "hostname is: " << resolved_hostname << "\n";
+  }
+
   return 0;
 }
 
