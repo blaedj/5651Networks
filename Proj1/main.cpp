@@ -34,9 +34,8 @@ int main( int argc, char *argv[] ) {
   }
   if (args.hasHostIP) {
     string resolved_hostname = identifier.getHostname( args.hostIP );
-    cout << "hostname is: " << resolved_hostname << "\n";
+    cout << args.hostIP << " is: " << resolved_hostname << "\n";
   }
-
   return 0;
 }
 

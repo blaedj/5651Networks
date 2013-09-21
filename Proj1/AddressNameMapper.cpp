@@ -21,6 +21,8 @@
 using namespace bcjnetworks;
 using namespace std;
 
+void setupInputSocket(sockaddr_in* socket_address, string host_IP);
+void checkForNameInfoErrors(int result_code, string ip_address);
 
 AddressNameMapper::AddressNameMapper()
   : _hostname("localhost") {}
@@ -28,7 +30,44 @@ AddressNameMapper::AddressNameMapper()
 AddressNameMapper::~AddressNameMapper() {}
 
 string AddressNameMapper::getHostname(string ip_address){
-  return "a test local hostname";
+  socklen_t length; //input parameter, length of the socket.
+  char result_hostname[NI_MAXHOST]; // ouput parameter: host name
+  char result_service_name[NI_MAXSERV]; // output parameter: service name
+  int result_code;
+  struct sockaddr_in socket_address; // input parameter
+
+  setupInputSocket(&socket_address, ip_address);
+
+  result_code = getnameinfo((const sockaddr *)&socket_address, length,
+			    result_hostname, sizeof(result_hostname),
+			    0, 0, NI_NAMEREQD);
+
+  checkForNameInfoErrors(result_code, ip_address);
+
+  string str(result_hostname);
+  return str;
+}
+
+
+void checkForNameInfoErrors(int result_code, string ip_address){
+  if(result_code != 0){
+    if(result_code == -2){
+      cerr << "Sorry, the hostname for " << ip_address << " could not be found\n";
+    } else{
+    cerr << "this is a placeholder for an exception, couldn't get the hostname.\n";
+    cerr << "error: " << gai_strerror(result_code) << "\n";
+    cerr << "error code: " << result_code << "\n";
+    }
+    exit(EXIT_FAILURE);
+  }
+}
+
+void setupInputSocket(sockaddr_in* socket_address, string host_IP){
+  memset(socket_address, 0, sizeof(struct sockaddr_in));
+  // convert the dotted-decimal string to binary, and set binary form
+  // as the input struct's ip address
+  inet_pton(AF_INET, host_IP.c_str(), (void *)&(socket_address->sin_addr));
+  socket_address->sin_family = AF_INET;
 }
 
 string AddressNameMapper::getIPAddr( string hostname) {
