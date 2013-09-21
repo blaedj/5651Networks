@@ -27,15 +27,10 @@ int main( int argc, char *argv[] ) {
     cout << "Byte order is Big Endian\n";
   }
 
+
   if (args.hasHostname) {
-    deque<char*> resolved_addr = identifier.getIPAddr( args.hostname );
-
-    for(int i = 0; i < resolved_addr.size(); i++) {
-      char *cur_address = resolved_addr.front();
-      resolved_addr.pop_front();
-      cout << args.hostname << " is " << cur_address << "\n";
-    }
-
+    string resolved_addr = identifier.getIPAddr( args.hostname );
+    cout << args.hostname << " is " << resolved_addr << "\n";
   }
   if (args.hasHostIP) {
     string resolved_hostname = identifier.getHostname( args.hostIP );

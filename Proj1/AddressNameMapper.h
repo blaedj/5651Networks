@@ -24,7 +24,7 @@ namespace bcjnetworks {
     virtual ~AddressNameMapper();
 
     string getHostname( string ipaddress);
-    deque<char*> getIPAddr( string hostname);
+    string getIPAddr( string hostname);
 
   private:
     double _ip_address;

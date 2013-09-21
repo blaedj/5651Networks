@@ -11,6 +11,7 @@
 #include <arpa/inet.h>
 #include <cstdlib>
 #include <deque>
+#include <string>
 
 #include "AddressNameMapper.h"
 
@@ -30,10 +31,10 @@ string AddressNameMapper::getHostname(string ip_address){
   return "a test local hostname";
 }
 
-deque<char*> AddressNameMapper::getIPAddr( string hostname) {
+ string AddressNameMapper::getIPAddr( string hostname) {
 
   // struct addrinfo address_hints;
-  struct addrinfo *results, *result_iter;
+   struct addrinfo *results;//, *result_iter;
   int result_code;
   char buffer[BUFFER_SIZE];
   // make sure address_hints is cleared out in mem
@@ -56,27 +57,16 @@ deque<char*> AddressNameMapper::getIPAddr( string hostname) {
     exit(EXIT_FAILURE);
   }
 
-  std::deque<char*> ip_addresses;
-  for(result_iter = results; result_iter != NULL; result_iter = result_iter->ai_next){
-    char* ip_string;
-
+  char ip_string[INET_ADDRSTRLEN];
     // get the address information struct
-    struct sockaddr_in *result_addr  = (struct sockaddr_in *)(result_iter->ai_addr);
+    struct sockaddr_in *result_addr =(struct sockaddr_in *)(results->ai_addr);
 
     // convert the binary ip address in resultAddr to dotted decimal form
-    inet_ntop(result_iter->ai_family, (const void *)&(result_addr->sin_addr), ip_string,
-	      INET_ADDRSTRLEN);
-
-    //cout << hostname << " is " << ip_string << "\n";
-
-    // make sure we don't have duplicates, then push onto the deque
-    if(strcmp(ip_addresses.front(), ip_string ) != 0){
-      ip_addresses.push_front( ip_string );
-    }
-  }
+    inet_ntop(results->ai_family, (const void *)&(result_addr->sin_addr),
+	      ip_string, INET_ADDRSTRLEN);
 
   // release memory
   freeaddrinfo(results);
-  return ip_addresses;
-    //  return "IP_ADDRESSES_HERE";
+  string str(ip_string);
+  return str;
 }
