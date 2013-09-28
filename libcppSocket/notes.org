@@ -1,0 +1,13 @@
+#+TITLE: Ideas for the libcppSocket library
+
+* Classes/interfaces/behaviors
+
+* IHTTPMessage
+  * Generic Interface
+* Socket Interface/Class
+  * possibly differentiate between TCP and UDP?
+** Create a socket
+** Bind - port and host
+** Listen
+** Accept
+** Send ( IHTTPMessage )
