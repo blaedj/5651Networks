@@ -4,8 +4,6 @@ project(NETWORKSPROJ1)
 
 include_directories(${CMAKE_SOURCE_DIR}/libcs5651/CS5651Lib)
 
-add_subdirectory(libcs5651)
-
 SET(CMAKE_CXX_FLAGS "-g")
 SET (Boost_MULTITHREADED TRUE)
 

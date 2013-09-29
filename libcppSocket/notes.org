@@ -1,13 +1,39 @@
 #+TITLE: Ideas for the libcppSocket library
 
 * Classes/interfaces/behaviors
+** AddressNameMapper
+  * Already mostly implemented
+  * May need to expand upon the getIPAddr method to return multiple results
+  * Handles the gethostname and getipaddress roles
+  * Probabaly could make this class private
 
-* IHTTPMessage
-  * Generic Interface
-* Socket Interface/Class
+** IMessage
+  * Generic Interface for messages sent by sockets
+
+** HTTPMessage
+  * implements IMessage
+*** PUT
+*** DELETE
+*** GET
+** Generic Socket
   * possibly differentiate between TCP and UDP?
-** Create a socket
-** Bind - port and host
-** Listen
-** Accept
-** Send ( IHTTPMessage )
+** UDPSocket
+  * Currently un-implemented
+** TCPSocket
+*** Generic methods
+**** Create ()
+**** Close ()
+**** Send ( IMessage )
+    * returns another IMessage, (ie response)
+    * a message to client, or possibly server
+    * could be a request or response HTTP message
+
+*** Server-socket methods
+**** Bind - ( port and host )
+**** Listen
+**** Accept
+   * accept connection from client
+
+*** Client-socket methods
+**** Connect( host, portNumber )
+    * params: host and port number(local port)
