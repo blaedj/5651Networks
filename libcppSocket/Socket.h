@@ -14,9 +14,9 @@ namespace libcppsocket {
 
   class Socket {
   public:
-    Socket();
     virtual ~Socket();
-
+  private:
+    Socket();
   }
 
 
