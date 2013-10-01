@@ -18,7 +18,7 @@
 #define BUFFER_SIZE 500
 #define INET_ADDRSTRLEN 16
 
-using namespace bcjnetworks;
+using namespace libcppsocket;
 using namespace std;
 
 void setupInputSocket(sockaddr_in* socket_address, string host_IP);

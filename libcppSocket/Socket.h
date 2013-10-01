@@ -3,7 +3,7 @@
  *
  * author: Blaed Johnston
  *
- * abstract class, generic socket structure.
+ * generic socket structure.
 */
 
 #ifndef __LIBCPPSOCKET__SOCKET_H__
@@ -11,15 +11,15 @@
 
 namespace libcppsocket {
 
-
   class Socket {
   public:
-    virtual ~Socket();
-  private:
     Socket();
-  }
+    virtual ~Socket();
+    Socket(int port);
+  private:
 
+  };
 
-}
+};
 
 #endif
