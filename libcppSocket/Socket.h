@@ -9,13 +9,19 @@
 #ifndef __LIBCPPSOCKET__SOCKET_H__
 #define __LIBCPPSOCKET__SOCKET_H__ 1
 
-namespace libcppsocket {
+#include <cstdlib>
+#include <iostream>
 
+using namespace std;
+
+namespace libcppsocket {
   class Socket {
   public:
     Socket();
     virtual ~Socket();
-    Socket(int port);
+    void close();
+  protected:
+    int socket_fd;
   private:
 
   };

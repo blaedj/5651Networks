@@ -15,11 +15,9 @@ namespace libcppsocket {
   public:
     SocketException(string message="general socket exception")
       : _message(message) {}
+    ~SocketException() throw() {}
 
-    const char* what() const throw( ) { return _message.c_str(); }
-
-    ~SocketException()  throw() {}
-
+    const char* what() const throw() { return _message.c_str(); }
   private:
     string _message;
   };
