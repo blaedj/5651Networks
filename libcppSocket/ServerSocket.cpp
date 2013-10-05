@@ -65,7 +65,7 @@ void ServerSocket::bind_socket(int port) {
 }
 
 // waits for a client to connect, *Blocks!*
-int ServerSocket::accept_connection(){
+int ServerSocket::accept_connection() {
   int client_socket_fd;
   struct sockaddr_in client_addr;
   socklen_t length = sizeof(client_addr);

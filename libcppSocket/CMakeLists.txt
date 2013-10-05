@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 2.8)
 
 add_library( libcppSocket ${LIB_TYPE}
   AddressNameMapper.cpp AddressNameMapper.h
+  Socket.h Socket.cpp ServerSocket.h ServerSocket.cpp
+  SocketException.h
   # put various library classes here
   )
 
