@@ -14,9 +14,11 @@ namespace libcppsocket {
   class ServerSocket : public Socket {
   public:
     ServerSocket(int port);
-    int accept_clients();
+    int open_for_clients();
+    int accept_connection();
   protected:
     void bind_socket(int port);
+    int _port;
   };
 
 }
