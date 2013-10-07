@@ -3,6 +3,7 @@
  * @author: Blaed Johnston, Oct 2013
 */
 
+#include "handleNetworkArgs.h"
 #include "ServerSocket.h"
 
 using namespace libcppsocket;

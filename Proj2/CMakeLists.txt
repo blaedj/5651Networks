@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(DROPBOXCLONE)
 
 include_directories(${CMAKE_SOURCE_DIR}/libcs5651/CS5651Lib)
-include_directories(${CMAKE_SOURCE_DIR}/../libcppsocket)
+include_directories(${CMAKE_SOURCE_DIR}/libcppSocket)
 
 SET(CMAKE_CXX_FLAGS "-g")
 SET (Boost_MULTITHREADED TRUE)
@@ -27,6 +27,6 @@ ADD_EXECUTABLE( socketTest
 
 target_link_libraries(socketTest cs5651-util)
 
-target_link_libraries(socketTest ${Boost_PROGRAM_OPTIONS_LIBRARIES})
+target_link_libraries(socketTest cppSocket)
 
-target_link_libraries(socketTest libcppsocket)
+target_link_libraries(socketTest ${Boost_PROGRAM_OPTIONS_LIBRARIES})
