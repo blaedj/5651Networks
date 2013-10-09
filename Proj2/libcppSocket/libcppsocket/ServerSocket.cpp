@@ -13,6 +13,7 @@
 #include <cstring>
 #include <iostream>
 #include <sstream>
+#include <unistd.h>
 
 using namespace std;
 using namespace libcppsocket;

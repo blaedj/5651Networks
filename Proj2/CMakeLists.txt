@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(DROPBOXCLONE)
 
-include_directories(${CMAKE_SOURCE_DIR}/libcs5651/CS5651Lib)
-include_directories(${CMAKE_SOURCE_DIR}/libcppSocket)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../libcs5651/CS5651Lib/)
+INCLUDE_DIRECTORIES(libcppSocket/libcppsocket/)
+add_subdirectory(libcppSocket/libcppsocket/)
 
 SET(CMAKE_CXX_FLAGS "-g")
 SET (Boost_MULTITHREADED TRUE)

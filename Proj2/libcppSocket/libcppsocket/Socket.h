@@ -18,7 +18,6 @@ namespace libcppsocket {
   class Socket {
   public:
     Socket();
-    virtual ~Socket();
     void close();
   protected:
     int socket_fd;
