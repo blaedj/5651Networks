@@ -9,17 +9,20 @@
 
 #include "Socket.h"
 
+#include <sys/types.h>
+#include <netinet/in.h>
+
 namespace libcppsocket {
 
   class ClientSocket : public Socket {
   public:
-    ClientSocket(string hostname, int port_num);
+    ClientSocket(string ip_address, int port_num);
     void sendRequest(string message);
 
   private:
     int host_ip;
     int port;
-
+    sockaddr_in server;
   };
 
 }
