@@ -31,8 +31,10 @@ ADD_EXECUTABLE( clientTest
   socketClient.cpp
 )
 
-target_link_libraries(socketTest cs5651-util)
+target_link_libraries(socketServer cs5651-util)
+target_link_libraries(socketServer cppSocket)
+target_link_libraries(socketServer ${Boost_PROGRAM_OPTIONS_LIBRARIES})
 
-target_link_libraries(socketTest cppSocket)
-
-target_link_libraries(socketTest ${Boost_PROGRAM_OPTIONS_LIBRARIES})
+target_link_libraries(socketClient cs5651-util)
+target_link_libraries(socketClient cppSocket)
+target_link_libraries(socketClient ${Boost_PROGRAM_OPTIONS_LIBRARIES})
