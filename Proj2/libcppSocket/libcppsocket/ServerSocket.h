@@ -1,6 +1,6 @@
 /*
  * @author: Blaed Johnston Oct 2013
- * TCPSocket.h
+ * ServerSocket.h
  *
  */
 
@@ -8,16 +8,21 @@
 #define  __LIBCPPSOCKET__SERVERSOCKET_H 1
 
 #include "Socket.h"
+#include "IMessage.h"
 
 namespace libcppsocket {
 
   class ServerSocket : public Socket {
   public:
     ServerSocket(int port);
-    //~ServerSocket();
+
     int open_for_clients();
     int accept_connection();
+    //string recieve_request();
 
+    //IMessage parse_request_data(char request_data[]);
+
+    void respond(string response_message, int client_fd);
   protected:
     void bind_socket(int port);
     int _port;

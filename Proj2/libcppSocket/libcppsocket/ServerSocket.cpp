@@ -14,13 +14,16 @@
 #include <iostream>
 #include <sstream>
 #include <unistd.h>
+#include <string.h>
+#include <vector>
+#include <errno.h>
 
 using namespace std;
 using namespace libcppsocket;
 
 void check_socket_fd(int sock_fileDesc);
 void bind_socket(int port);
-
+void check_return_code(int code);
 /* creates and binds a socket to the specified port*/
 ServerSocket::ServerSocket(int port) {
   _port = port;
@@ -35,13 +38,6 @@ int ServerSocket::open_for_clients() {
   // 42 is the que size for pending connections to the socket
   listen( socket_fd, 42 );
   return 0;
-}
-
-// error checking function
-void check_socket_fd(int sock_fileDesc) {
-  if(sock_fileDesc < 0) {
-    throw SocketException("A generic error occured in ServerSocket.cpp");
-  }
 }
 
 // bind the socket to the given port.
@@ -73,5 +69,44 @@ int ServerSocket::accept_connection() {
   client_socket_fd = accept(socket_fd, (sockaddr*)&client_addr, &length);
   check_socket_fd(client_socket_fd);
 
-  return 0;
+  return client_socket_fd;
+}
+
+// Send the specified message to the given client
+void ServerSocket::respond(string response_message, int client_fd){
+  char CR = '\r';
+  char LF = '\n';
+  int msgSize = response_message.length();
+
+  ostringstream output_stream("");
+  output_stream << response_message << CR << LF;
+  send(client_fd, output_stream.str().c_str(), msgSize, 0);
+
+  int client_close = close(client_fd);
+  if(client_close != 0){
+    int errCode = errno;
+    check_return_code(errCode);
+  }
+
+  int serv_close = close(socket_fd);
+  if(serv_close != 0){
+    int errCode = errno;
+    check_return_code(errCode);
+  }
+}
+
+// error checking function
+void check_socket_fd(int sock_fileDesc) {
+  if(sock_fileDesc < 0) {
+    throw SocketException("A generic error occured in ServerSocket.cpp");
+  }
+}
+
+void check_return_code(int code){
+  if(code != 0){
+    stringstream ss;
+    ss << "An error occured when closing a socket. Error # is: "
+       << code << "\n";
+    throw SocketException(ss.str());
+  }
 }

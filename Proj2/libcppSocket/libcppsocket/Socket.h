@@ -18,7 +18,7 @@ namespace libcppsocket {
   class Socket {
   public:
     Socket();
-    void close();
+    string recieve();
   protected:
     int socket_fd;
   private:
