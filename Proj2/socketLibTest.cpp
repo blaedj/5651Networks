@@ -18,11 +18,11 @@ int main( int argc, char *argv[] ) {
   server.open_for_clients();
   while(true){
     int client_fd = server.accept_connection();
-    string data_recieved = recieve(client_fd);
+    string data_recieved = server.recieve(client_fd);
 
     stringstream response_msg("");
     response_msg << data_recieved << " and one!";
-    respond(response_msg.str(), client_fd);
+    server.respond(response_msg.str(), client_fd);
   }
 
   return 0;
