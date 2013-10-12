@@ -37,6 +37,11 @@ void ClientSocket::send_request(string message){
   check_sent_size(sent_bytes);
 }
 
+string ClientSocket::get_response(){
+  string response_msg = recieve(socket_fd);
+  return response_msg;
+}
+
 void check_sent_size(int sent){
   if(sent == -1){
     stringstream err_msg;

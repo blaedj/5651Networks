@@ -1,5 +1,5 @@
 /*
- * socketLibTest.cpp
+ * socketServer.cpp
  * @author: Blaed Johnston, Oct 2013
 */
 

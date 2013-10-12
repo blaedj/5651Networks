@@ -23,9 +23,13 @@ IF(${Boost_FOUND})
   INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 ENDIF()
 
-ADD_EXECUTABLE( socketTest
-  socketLibTest.cpp
+ADD_EXECUTABLE( socketServer
+  socketServer.cpp
   )
+
+ADD_EXECUTABLE( clientTest
+  socketClient.cpp
+)
 
 target_link_libraries(socketTest cs5651-util)
 

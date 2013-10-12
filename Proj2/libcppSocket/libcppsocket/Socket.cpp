@@ -26,7 +26,7 @@ Socket::Socket( ){
 }
 
 
-string Socket::recieve( int recv_socket) {
+string Socket::recieve( int recv_socket ) {
   char buffer[500];
   int total_received_bytes = 0;
   int MSGSZ = 500;
