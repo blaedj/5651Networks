@@ -24,6 +24,7 @@ using namespace libcppsocket;
 void check_socket_fd(int sock_fileDesc);
 void bind_socket(int port);
 void check_return_code(int code);
+
 /* creates and binds a socket to the specified port*/
 ServerSocket::ServerSocket(int port) {
   _port = port;
@@ -33,7 +34,6 @@ ServerSocket::ServerSocket(int port) {
 
 /* waits for a client to connect to the server*/
 int ServerSocket::open_for_clients() {
-  //  int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
   bind_socket( _port );
   // 42 is the que size for pending connections to the socket
   listen( socket_fd, 42 );
@@ -62,6 +62,7 @@ void ServerSocket::bind_socket(int port) {
 }
 
 // waits for a client to connect, *Blocks!*
+// returns the client socket_fd for the connection
 int ServerSocket::accept_connection() {
   int client_socket_fd;
   struct sockaddr_in client_addr;
@@ -84,12 +85,6 @@ void ServerSocket::respond(string response_message, int client_fd){
 
   int client_close = close(client_fd);
   if(client_close != 0){
-    int errCode = errno;
-    check_return_code(errCode);
-  }
-
-  int serv_close = close(socket_fd);
-  if(serv_close != 0){
     int errCode = errno;
     check_return_code(errCode);
   }

@@ -17,7 +17,7 @@ namespace libcppsocket {
   class ClientSocket : public Socket {
   public:
     ClientSocket(string ip_address, int port_num);
-    void sendRequest(string message);
+    void send_request(string message);
 
   private:
     int host_ip;
