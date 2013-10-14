@@ -1,7 +1,7 @@
 /*
  * socketClient
  * @author: Blaed Johnston, Oct 2013
-*/
+ */
 
 #include <sstream>
 
@@ -19,15 +19,19 @@ int main( int argc, char *argv[] ) {
     cout << "A hostIP address is required\n";
     exit(0);
   }
+  string next_message = "initial";
   string hostIP = args.hostIP;
   int port = args.port;
-  ClientSocket socket(hostIP, port);
-  // TODO: make some way for this to be changed.
-  string client_request = "this is a test";
-  socket.send_request(client_request);
-  string return_message = socket.get_response();
 
-  cout << return_message;
+  while(next_message != "q"){
+    ClientSocket socket(hostIP, port);
+    // TODO: make some way for this to be changed.
+    string client_request = next_message;
+    socket.send_request(client_request);
+    string return_message = socket.get_response();
 
+    cout << "return message is: "<< return_message << "\n";
+    cin >> next_message;
+  }
   return 0;
 }

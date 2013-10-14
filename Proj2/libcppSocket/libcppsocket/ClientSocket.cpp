@@ -19,7 +19,7 @@ using namespace libcppsocket;
 void check_sent_size(int sent);
 
 ClientSocket::ClientSocket(string ip_address, int port_num){
-  socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+
 
   memset(&server, 0, sizeof(server));
   server.sin_family = AF_INET;
@@ -31,8 +31,12 @@ ClientSocket::ClientSocket(string ip_address, int port_num){
 }
 
 void ClientSocket::send_request(string message){
+  char CR = '\r';
+  char LF = '\n';
+
   int size_to_send = message.length();
   int sent_bytes = 0;
+  cout << "debug: message is: " << message.c_str() << CR << LF;
   sent_bytes = send(socket_fd, message.c_str(), size_to_send, 0);
   check_sent_size(sent_bytes);
 }

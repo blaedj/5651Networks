@@ -4,6 +4,8 @@
  *  generic socket. can be extended to tcp, udp etc.
  */
 
+#define DEBUG 1
+
 #include <cstdlib>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -30,6 +32,7 @@ string Socket::recieve( int recv_socket ) {
   char buffer[500];
   int total_received_bytes = 0;
   int MSGSZ = 500;
+  #ifndef DEBUG
   fd_set rfds;
   FD_ZERO(&rfds);
   FD_SET (recv_socket, &rfds);
@@ -44,6 +47,10 @@ string Socket::recieve( int recv_socket ) {
   std::vector<char>::iterator total_recvd_cntr;
   do {
     int bytes_recvd = ::recv(recv_socket, buffer, MSGSZ, 0 );
+    if(bytes_recvd == -1){
+      throw SocketException("there was an error recieving data.");
+    }
+
     total_received_bytes += bytes_recvd;
     for(int i = 0; i < (int)sizeof(buffer); i++){
       total_recvd_cntr = recvd_data.insert(total_recvd_cntr, buffer[i]);
@@ -54,4 +61,13 @@ string Socket::recieve( int recv_socket ) {
   //TODO convert the vector<char> to a message somehow
   string str(data_arr);
   return str;
+  #else
+  int recvBytes = recv(recv_socket, buffer, 500, 0);
+  if(recvBytes == -1){
+    throw SocketException("error reciving!\n");
+  }
+  string str(buffer);
+  return str;
+  #endif
+
 }

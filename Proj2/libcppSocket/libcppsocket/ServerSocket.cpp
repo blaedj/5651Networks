@@ -54,6 +54,10 @@ void ServerSocket::bind_socket(int port) {
   serv_address.sin_addr.s_addr = htonl(INADDR_ANY);
   serv_address.sin_port = htons(port);
 
+  int reuse_on = 1;
+  setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &reuse_on,
+	     sizeof(reuse_on));
+
   if( bind(socket_fd,(const struct sockaddr *)&serv_address, sizeof(serv_address)) < 0) {
     stringstream ss;
     ss << "Unable to bind socket to port: " << port<< "\n";
