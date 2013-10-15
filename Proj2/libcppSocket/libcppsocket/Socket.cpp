@@ -29,9 +29,10 @@ Socket::Socket( ){
 
 
 string Socket::recieve( int recv_socket ) {
-  char buffer[500];
+
   int total_received_bytes = 0;
   int MSGSZ = 500;
+  char buffer[MSGSZ];
   #ifndef DEBUG
   fd_set rfds;
   FD_ZERO(&rfds);
@@ -46,6 +47,7 @@ string Socket::recieve( int recv_socket ) {
   vector<char> recvd_data;
   std::vector<char>::iterator total_recvd_cntr;
   do {
+    memset((void *)&buffer, 0, MSGSZ);
     int bytes_recvd = ::recv(recv_socket, buffer, MSGSZ, 0 );
     if(bytes_recvd == -1){
       throw SocketException("there was an error recieving data.");
