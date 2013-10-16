@@ -41,7 +41,7 @@ int main( int argc, char *argv[] ) {
       response_msg.add(data_buf, file_size);
       delete[] data_buf;
       server.respond(response_msg, client_fd);
-
+      cout <<"'" <<file_requested << "'"<< " was sent.\n";
     } catch( SocketException e) {
       string str(e.what());
       cout << "an error occured: '"<< str << "'\n";

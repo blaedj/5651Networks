@@ -35,5 +35,8 @@ int main( int argc, char *argv[] ) {
   assert(*(data2+6) == 'g');
   assert(*(data2+8) == 'i');
   assert(*(data2+9) == 'j');
+
+  cout << "+++++++++++++++++++++++++++\nTests run OK\n";
+
   return 0;
 }
