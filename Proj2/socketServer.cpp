@@ -14,6 +14,7 @@ using namespace libcppsocket;
 using namespace std;
 
 void signal_handler();
+void processFileSend();
 
 int main( int argc, char *argv[] ) {
   int port = 45002;
@@ -28,8 +29,19 @@ int main( int argc, char *argv[] ) {
       // cout << "File requested: '"<< data_recieved.get_data() <<"'\n";
       char * file_requested = data_recieved.get_data();
 
-      ifstream reader(file_requested, ios::in|ios::binary|ios::ate);
 
+    } catch( SocketException e) {
+      string str(e.what());
+      cout << "an error occured: '"<< str << "'\n";
+      exit(1);
+    }
+  }
+  return 0;
+}
+
+
+void processFileSend() {
+   ifstream reader(file_requested, ios::in|ios::binary|ios::ate);
       ifstream::pos_type file_size;
       char * data_buf;
       if (reader.is_open()) {
@@ -44,11 +56,4 @@ int main( int argc, char *argv[] ) {
       delete[] data_buf;
       server.respond(response_msg, client_fd);
       cout <<"'" <<file_requested << "'"<< " was sent.\n";
-    } catch( SocketException e) {
-      string str(e.what());
-      cout << "an error occured: '"<< str << "'\n";
-      exit(1);
-    }
-  }
-  return 0;
 }
