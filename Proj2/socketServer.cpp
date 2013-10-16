@@ -25,9 +25,11 @@ int main( int argc, char *argv[] ) {
     try{
       int client_fd = server.accept_connection();
       MessageBuffer data_recieved = server.recieve(client_fd);
-      cout << "File requested: '"<< data_recieved.get_data() <<"'\n";
+      // cout << "File requested: '"<< data_recieved.get_data() <<"'\n";
       char * file_requested = data_recieved.get_data();
+
       ifstream reader(file_requested, ios::in|ios::binary|ios::ate);
+
       ifstream::pos_type file_size;
       char * data_buf;
       if (reader.is_open()) {

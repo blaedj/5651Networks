@@ -13,3 +13,7 @@ target_link_libraries(test_NetArgParsing cs5651-util)
 # using... namely the program options.
 target_link_libraries(test_NetArgParsing ${Boost_PROGRAM_OPTIONS_LIBRARIES})
 
+add_executable(test_fileDirExample
+  test_fileDirExample.cpp
+)
+
