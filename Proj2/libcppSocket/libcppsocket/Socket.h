@@ -12,13 +12,15 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "MessageBuffer.h"
+
 using namespace std;
 
 namespace libcppsocket {
   class Socket {
   public:
     Socket();
-    string recieve(int recv_socket);
+    MessageBuffer recieve(int recv_socket);
   protected:
     int socket_fd;
   private:

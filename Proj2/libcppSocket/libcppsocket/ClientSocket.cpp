@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sstream>
+#include <unistd.h>
 
 #include "ClientSocket.h"
 #include "AddressNameMapper.h"
@@ -30,19 +31,18 @@ ClientSocket::ClientSocket(string ip_address, int port_num){
   connect(socket_fd, (const sockaddr *)&server, sizeof(server));
 }
 
-void ClientSocket::send_request(string message){
+void ClientSocket::send_request(MessageBuffer message){
   char CR = '\r';
   char LF = '\n';
 
-  int size_to_send = message.length();
+  int size_to_send = message.size();
   int sent_bytes = 0;
-  cout << "debug: message is: " << message.c_str() << CR << LF;
-  sent_bytes = send(socket_fd, message.c_str(), size_to_send, 0);
+  sent_bytes = send(socket_fd, message.get_data(), size_to_send, 0);
   check_sent_size(sent_bytes);
 }
 
-string ClientSocket::get_response(){
-  string response_msg = recieve(socket_fd);
+MessageBuffer ClientSocket::get_response(){
+  MessageBuffer response_msg = recieve(socket_fd);
   return response_msg;
 }
 
@@ -51,5 +51,12 @@ void check_sent_size(int sent){
     stringstream err_msg;
     err_msg << "an error occured sending the message to the server\n";
     throw SocketException(err_msg.str());
+  }
+}
+
+void ClientSocket::close_socket(){
+  int return_code = close(socket_fd);
+  if(return_code != 0){
+    throw SocketException("Error closing the client socket\n");
   }
 }

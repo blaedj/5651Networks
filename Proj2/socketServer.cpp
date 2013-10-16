@@ -4,6 +4,7 @@
  */
 
 #include <sstream>
+#include <fstream>
 
 #include "libcs5651/CS5651Lib/handleNetworkArgs.h"
 #include "libcppSocket/libcppsocket/ServerSocket.h"
@@ -12,25 +13,40 @@
 using namespace libcppsocket;
 using namespace std;
 
-int main( int argc, char *argv[] ) {
+void signal_handler();
 
+int main( int argc, char *argv[] ) {
   int port = 45002;
+  cout << "Starting server on port "<<port<<"...\n";
   ServerSocket server(port);
   server.open_for_clients();
+  cout <<"Server up and running\n";
   while(true){
     try{
       int client_fd = server.accept_connection();
-      string data_recieved = server.recieve(client_fd);
-      cout << data_recieved<<"\n";
-      stringstream response_msg("");
-      response_msg << data_recieved << " and one!";
-      server.respond(response_msg.str(), client_fd);
+      MessageBuffer data_recieved = server.recieve(client_fd);
+      cout << "File requested: '"<< data_recieved.get_data() <<"'\n";
+      char * file_requested = data_recieved.get_data();
+      ifstream reader(file_requested, ios::in|ios::binary|ios::ate);
+      ifstream::pos_type file_size;
+      char * data_buf;
+      if (reader.is_open()) {
+	file_size = reader.tellg();
+	data_buf= new char [file_size];
+	reader.seekg (0, ios::beg);
+	reader.read (data_buf, file_size);
+	reader.close();
+      }
+      MessageBuffer response_msg;
+      response_msg.add(data_buf, file_size);
+      delete[] data_buf;
+      server.respond(response_msg, client_fd);
+
     } catch( SocketException e) {
       string str(e.what());
-      cout << str << "\n";
+      cout << "an error occured: '"<< str << "'\n";
       exit(1);
     }
   }
-
   return 0;
 }

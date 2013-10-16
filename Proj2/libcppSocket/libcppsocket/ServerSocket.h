@@ -18,11 +18,8 @@ namespace libcppsocket {
 
     int open_for_clients();
     int accept_connection();
-    //string recieve_request();
 
-    //IMessage parse_request_data(char request_data[]);
-
-    void respond(string response_message, int client_fd);
+    void respond(MessageBuffer response_message, int client_fd);
   protected:
     void bind_socket(int port);
     int _port;

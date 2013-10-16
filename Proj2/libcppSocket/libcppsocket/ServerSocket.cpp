@@ -78,14 +78,12 @@ int ServerSocket::accept_connection() {
 }
 
 // Send the specified message to the given client
-void ServerSocket::respond(string response_message, int client_fd){
+void ServerSocket::respond(MessageBuffer response_message, int client_fd){
   char CR = '\r';
   char LF = '\n';
-  int msgSize = response_message.length();
+  int msgSize = response_message.size();
 
-  ostringstream output_stream("");
-  output_stream << response_message << CR << LF;
-  send(client_fd, output_stream.str().c_str(), msgSize, 0);
+  send(client_fd, response_message.get_data(), msgSize, 0);
 
   int client_close = close(client_fd);
   if(client_close != 0){
