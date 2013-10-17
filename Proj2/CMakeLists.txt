@@ -35,6 +35,10 @@ ADD_EXECUTABLE( u_MessageBuffer
   test_MessageBuffer.cpp
 )
 
+ADD_EXECUTABLE( u_HttpParser
+  test_parser.cpp
+)
+
 target_link_libraries(socketServer cs5651-util)
 target_link_libraries(socketServer cppSocket)
 target_link_libraries(socketServer ${Boost_PROGRAM_OPTIONS_LIBRARIES})
@@ -46,3 +50,7 @@ target_link_libraries(clientTest ${Boost_PROGRAM_OPTIONS_LIBRARIES})
 target_link_libraries(u_MessageBuffer cs5651-util)
 target_link_libraries(u_MessageBuffer cppSocket)
 target_link_libraries(u_MessageBuffer ${Boost_PROGRAM_OPTIONS_LIBRARIES})
+
+target_link_libraries(u_HttpParser cs5651-util)
+target_link_libraries(u_HttpParser cppSocket)
+target_link_libraries(u_HttpParser ${Boost_PROGRAM_OPTIONS_LIBRARIES})

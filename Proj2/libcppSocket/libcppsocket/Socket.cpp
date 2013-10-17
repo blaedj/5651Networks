@@ -9,7 +9,6 @@
 #include <cstdlib>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <vector>
 #include <cstring>
 
 #include "Socket.h"

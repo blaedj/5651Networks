@@ -15,7 +15,6 @@
 #include <sstream>
 #include <unistd.h>
 #include <string.h>
-#include <vector>
 #include <errno.h>
 
 using namespace std;

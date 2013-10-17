@@ -10,7 +10,7 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <cstdlib>
-#include <deque>
+#include <vector>
 #include <string>
 
 #include "AddressNameMapper.h"

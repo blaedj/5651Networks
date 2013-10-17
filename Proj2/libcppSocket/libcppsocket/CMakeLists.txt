@@ -9,6 +9,8 @@ add_library( cppSocket ${LIB_TYPE}
   ClientSocket.h ClientSocket.cpp
   Socket.h Socket.cpp ServerSocket.h ServerSocket.cpp
   SocketException.h  MessageBuffer.h MessageBuffer.cpp
+  HttpParser.h HttpParser.cpp
+
   )
 
 ## This may be needed to install and use the library

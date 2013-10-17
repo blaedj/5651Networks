@@ -13,7 +13,7 @@
 
 
 #include <iostream>
-#include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -33,4 +33,4 @@ namespace libcppsocket {
   };
 }
 
-#endif // __BCJNETWORKS__ADDRESS_NAME_MAPPER_H__ 1
+#endif // __LIBCPPSOCKET__ADDRESS_NAME_MAPPER_H__ 1
