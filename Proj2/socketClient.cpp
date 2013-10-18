@@ -18,7 +18,7 @@ int main( int argc, char *argv[] ) {
   NetworkArgs args;
   args.process( argc, argv );
   if(!args.hasHostIP) {
-    cout << "A hostIP address is required\n";
+    cout << "A hostIP address and port number are required\n";
     exit(0);
   }
   string hostIP = args.hostIP;
