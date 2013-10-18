@@ -1,0 +1,11 @@
+#Simple client/server program
+
+ to test tun the following commands:
+
+./socketServer -p {Port Number Here}
+
+./clientTest -i {Server IP, ie 127.0.0.1} -p {Same port number as above}
+
+then follow the instructions as printed out. Note that the file you wish to
+ recieve from the server should be in the same directory as the server
+ executable, or specify the path relative to the server executable.
