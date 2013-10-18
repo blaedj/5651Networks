@@ -16,13 +16,6 @@ MessageBuffer::MessageBuffer() {
 }
 
 void MessageBuffer::add(char* data , int size) {
-  // size_t curlen = container.size();
-
-  // size_t newlen = curlen + size;
-  // char *tempContainer = new char[newlen];
-  // memcpy(tempContainer, &container, curlen );
-  // memcpy(tempContainer+curlen, (const void *)data, size);
-  // container.clear();
   container.insert(container.end(), data, data+size );
 }
 

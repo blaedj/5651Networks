@@ -14,11 +14,12 @@
 namespace libcppsocket {
   enum message_type { GET, PUT, DELETE };
 
-class HttpParser {
+  class HttpParser {
   public:
     HttpParser(MessageBuffer request);
     MessageBuffer process();
-    message_type request_type;
+    string request_type;
+    string extract_filename();
   private:
     bool check_for_file(char* filename);
     MessageBuffer process_file_send(char* filename);

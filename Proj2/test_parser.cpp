@@ -11,7 +11,7 @@
 #include "libcppSocket/libcppsocket/ClientSocket.h"
 #include "libcs5651/CS5651Lib/handleNetworkArgs.h"
 #include "libcppSocket/libcppsocket/HttpParser.h"
-#include "libcppSocket/libcppsocket/SocketException.h"
+#include "libcppSocket/libcppsocket/HttpException.h"
 
 using namespace libcppsocket;
 using namespace std;
@@ -27,10 +27,9 @@ int main(int argc, char *argv[]) {
   testGetTypeGet();
   testGetTypePut();
   testGetTypeDelete();
-  testGetTypeInvalid();
+  int tes = testGetTypeInvalid();
   return 0;
 }
-
 
 void testGetTypeGet(){
   MessageBuffer buff;
@@ -38,8 +37,7 @@ void testGetTypeGet(){
   buff.add((char *)data.c_str(), data.length());
   HttpParser parser(buff);
   parser.process();
-
-  assert(parser.request_type == GET);
+  assert(parser.request_type == "GET");
 }
 
 void testGetTypePut(){
@@ -49,7 +47,7 @@ void testGetTypePut(){
   HttpParser parser(buff);
   parser.process();
 
-  assert(parser.request_type == PUT);
+  assert(parser.request_type == "PUT");
   buff.clear_data();
 }
 
@@ -60,7 +58,7 @@ void testGetTypeDelete(){
   HttpParser parser(buff);
   parser.process();
 
-  assert(parser.request_type == DELETE);
+  assert(parser.request_type == "DELETE");
   buff.clear_data();
 }
 
@@ -71,7 +69,7 @@ int testGetTypeInvalid(){
   HttpParser parser(buff);
   try{
     parser.process();
-  } catch(SocketException e){
+  } catch(HttpException e){
     return 0;
   }
   buff.clear_data();

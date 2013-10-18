@@ -10,7 +10,7 @@ project (CPPSOCKETLIB)
 # code to be nicely portable across Operating Systems.
 # ----------------------------------------------------------
 SET (Boost_MULTITHREADED TRUE)
-
+SET(CMAKE_CXX_FLAGS "-g -std=c++0x")
 # If you want to get more info on what the Find Boost macro is
 # doing...
 # SET(Boost_DEBUG 1)
@@ -19,7 +19,7 @@ SET (Boost_MULTITHREADED TRUE)
 # statically for our purposes.
 SET(Boost_USE_STATIC_LIBS TRUE)
 
-FIND_PACKAGE(Boost REQUIRED date_time program_options system thread unit_test_framework)
+FIND_PACKAGE(Boost REQUIRED date_time program_options system thread unit_test_framework regex)
 IF(${Boost_FOUND})
   INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 ENDIF()

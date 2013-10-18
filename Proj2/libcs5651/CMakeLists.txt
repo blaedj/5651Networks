@@ -12,7 +12,7 @@ project (CS5651CODE)
 SET (Boost_MULTITHREADED TRUE)
 
 # If you want to get more info on what the Find Boost macro is
-# doing...  
+# doing...
 # SET(Boost_DEBUG 1)
 
 # Necessary to get Win32 version to work, plus, not a bad idea to link
@@ -32,7 +32,7 @@ add_subdirectory(tests)
 # that lets unit tests be run. After re-building yourproject with
 # ENABLE_TESTING called, a make target, called test will be
 # enabled. You can then type
-# 
+#
 #  make test
 #
 # to perform the unit tests. See the CMakeLists.txt file in the utests
@@ -41,4 +41,3 @@ add_subdirectory(tests)
 #
 # ENABLE_TESTING()
 # add_subdirectory(utests)
-
